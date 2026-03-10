@@ -12,16 +12,14 @@ public class LaunchActivity extends Activity {
             String cmd = "am startservice -n com.termux/.app.RunCommandService" +
                 " -a com.termux.RUN_COMMAND" +
                 " --es com.termux.RUN_COMMAND_PATH /data/data/com.termux/files/home/scripts/scan_wrapper.sh" +
-                " --ez com.termux.RUN_COMMAND_BACKGROUND false" +
-                " --es com.termux.RUN_COMMAND_SESSION_ACTION 0";
+                " --ez com.termux.RUN_COMMAND_BACKGROUND false";
             Process p = Runtime.getRuntime().exec(new String[]{
                 "/data/data/com.termux/files/home/.local/bin/rish",
                 "-c", cmd
             });
-            int exit = p.waitFor();
-            Toast.makeText(this, "exit code: " + exit, Toast.LENGTH_LONG).show();
+            p.waitFor();
         } catch (Exception e) {
-            Toast.makeText(this, "ERR: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
         finish();
     }
