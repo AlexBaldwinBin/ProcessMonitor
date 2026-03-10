@@ -3,6 +3,8 @@
 
     <application
         android:label="Scan Tile"
+        android:icon="@drawable/ic_tile"
+        android:roundIcon="@drawable/ic_tile"
         android:supportsRtl="true">
 
         <service
