@@ -2,6 +2,7 @@ package com.termux.qstile;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Toast;
 
 public class LaunchActivity extends Activity {
@@ -17,10 +18,11 @@ public class LaunchActivity extends Activity {
                 "/data/data/com.termux/files/home/.local/bin/rish",
                 "-c", cmd
             });
-            p.waitFor();
+            int exit = p.waitFor();
+            Toast.makeText(this, "exit: " + exit, Toast.LENGTH_LONG).show();
         } catch (Exception e) {
-            e.printStackTrace();
+            Toast.makeText(this, "ERR: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
-        finish();
+        new Handler().postDelayed(() -> finish(), 2000);
     }
 }
