@@ -16,7 +16,8 @@ public class LaunchActivity extends Activity {
         intent.putExtra("com.termux.RUN_COMMAND_BACKGROUND", false);
         intent.putExtra("com.termux.RUN_COMMAND_SESSION_ACTION", 0);
         intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
-        startService(intent);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
         new Handler().postDelayed(() -> finish(), 2000);
     }
 }
