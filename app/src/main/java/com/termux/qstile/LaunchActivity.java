@@ -14,6 +14,8 @@ public class LaunchActivity extends Activity {
         intent.putExtra("com.termux.RUN_COMMAND_PATH", "/data/data/com.termux/files/home/scripts/scan_wrapper.sh");
         intent.putExtra("com.termux.RUN_COMMAND_BACKGROUND", true);
         intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+        intent.putExtra("com.termux.RUN_COMMAND_BACKGROUND", false);
+        intent.putExtra("com.termux.RUN_COMMAND_SESSION_ACTION", "0");
         startService(intent);
         finish();
     }
