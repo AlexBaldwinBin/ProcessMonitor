@@ -1,9 +1,31 @@
 package com.termux.qstile;
 
+import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 import android.content.Intent;
 
 public class ScanTileService extends TileService {
+
+    @Override
+    public void onStartListening() {
+        super.onStartListening();
+        Tile tile = getQsTile();
+        if (tile != null) {
+            tile.setState(Tile.STATE_INACTIVE);
+            tile.setLabel("Scan");
+            tile.updateTile();
+        }
+    }
+
+    @Override
+    public void onTileAdded() {
+        super.onTileAdded();
+        Tile tile = getQsTile();
+        if (tile != null) {
+            tile.setState(Tile.STATE_INACTIVE);
+            tile.updateTile();
+        }
+    }
 
     @Override
     public void onClick() {
