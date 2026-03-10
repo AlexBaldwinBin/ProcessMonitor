@@ -36,7 +36,7 @@ public class ScanTileService extends TileService {
             "com.termux.app.RunCommandService"
         );
         intent.setAction("com.termux.RUN_COMMAND");
-        intent.putExtra("com.termux.RUN_COMMAND_PATH", "/data/data/com.termux/files/home/scripts/scan.sh");
+        intent.putExtra("com.termux.RUN_COMMAND_PATH", "/data/data/com.termux/files/home/scripts/scan_wrapper.sh");
         intent.putExtra("com.termux.RUN_COMMAND_BACKGROUND", false);
         startService(intent);
     }
