@@ -1,32 +1,16 @@
-plugins {
-    id 'com.android.application'
-}
-
-android {
-    namespace 'com.termux.qstile'
-    compileSdk 34
-
-    defaultConfig {
-        applicationId "com.termux.qstile"
-        minSdk 24
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.2.0'
     }
 }
 
-dependencies {
-    implementation 'dev.rikka.shizuku:api:13.1.5'
-    implementation 'dev.rikka.shizuku:provider:13.1.5'
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
