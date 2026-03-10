@@ -1,10 +1,8 @@
 package com.termux.qstile;
 
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 public class LaunchActivity extends Activity {
@@ -19,12 +17,10 @@ public class LaunchActivity extends Activity {
             intent.putExtra("com.termux.RUN_COMMAND_BACKGROUND", false);
             intent.putExtra("com.termux.RUN_COMMAND_SESSION_ACTION", 0);
             intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
-            ComponentName cn = startService(intent);
-            Toast.makeText(this, cn != null ? "OK: " + cn : "FAILED", Toast.LENGTH_LONG).show();
-            Log.d("QSTILE", "startService result: " + cn);
+            sendBroadcast(intent);
+            Toast.makeText(this, "Broadcast sent!", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             Toast.makeText(this, "ERROR: " + e.getMessage(), Toast.LENGTH_LONG).show();
-            Log.e("QSTILE", "error", e);
         }
         finish();
     }
