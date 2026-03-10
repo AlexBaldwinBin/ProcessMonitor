@@ -3,6 +3,7 @@ plugins {
 }
 
 android {
+    namespace 'com.termux.qstile'
     compileSdk 34
     defaultConfig {
         applicationId "com.termux.qstile"
