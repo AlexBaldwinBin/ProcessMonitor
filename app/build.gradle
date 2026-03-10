@@ -5,6 +5,7 @@ plugins {
 android {
     namespace 'com.termux.qstile'
     compileSdk 34
+
     defaultConfig {
         applicationId "com.termux.qstile"
         minSdk 24
@@ -12,11 +13,20 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
-dependencies {}
+dependencies {
+    implementation 'dev.rikka.shizuku:api:13.1.5'
+    implementation 'dev.rikka.shizuku:provider:13.1.5'
+}
