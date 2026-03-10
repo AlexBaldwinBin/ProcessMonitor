@@ -10,13 +10,9 @@ public class LaunchActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            String cmd = "am startservice -n com.termux/.app.RunCommandService" +
-                " -a com.termux.RUN_COMMAND" +
-                " --es com.termux.RUN_COMMAND_PATH /data/data/com.termux/files/home/scripts/scan_wrapper.sh" +
-                " --ez com.termux.RUN_COMMAND_BACKGROUND false";
             Process p = Runtime.getRuntime().exec(new String[]{
-                "/data/data/com.termux/files/home/.local/bin/rish",
-                "-c", cmd
+                "/system/bin/sh", "-c",
+                "/data/data/com.termux/files/home/.local/bin/rish -c 'am startservice -n com.termux/.app.RunCommandService -a com.termux.RUN_COMMAND --es com.termux.RUN_COMMAND_PATH /data/data/com.termux/files/home/scripts/scan_wrapper.sh --ez com.termux.RUN_COMMAND_BACKGROUND false'"
             });
             int exit = p.waitFor();
             Toast.makeText(this, "exit: " + exit, Toast.LENGTH_LONG).show();
