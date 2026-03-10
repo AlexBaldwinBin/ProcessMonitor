@@ -3,13 +3,25 @@
 
     <application
         android:label="Scan Tile"
+        android:icon="@drawable/ic_tile"
+        android:roundIcon="@drawable/ic_tile"
         android:supportsRtl="true">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".ScanTileService"
             android:exported="true"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            android:label="Scan">
+            android:label="Scan"
+            android:icon="@drawable/ic_tile">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>
             </intent-filter>
