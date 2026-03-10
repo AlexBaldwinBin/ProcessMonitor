@@ -11,6 +11,7 @@ public class LaunchActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Toast.makeText(this, "Step 1: opening Termux", Toast.LENGTH_SHORT).show();
 
         Intent openTermux = new Intent();
         openTermux.setClassName("com.termux", "com.termux.app.TermuxActivity");
@@ -18,6 +19,7 @@ public class LaunchActivity extends Activity {
         startActivity(openTermux);
 
         new Handler().postDelayed(() -> {
+            Toast.makeText(this, "Step 2: starting service", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
             intent.setClassName("com.termux", "com.termux.app.RunCommandService");
             intent.setAction("com.termux.RUN_COMMAND");
@@ -25,8 +27,8 @@ public class LaunchActivity extends Activity {
             intent.putExtra("com.termux.RUN_COMMAND_BACKGROUND", false);
             intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
             ComponentName cn = startService(intent);
-            Toast.makeText(this, cn != null ? "OK!" : "NULL", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, cn != null ? "Step 3: OK!" : "Step 3: NULL", Toast.LENGTH_LONG).show();
             new Handler().postDelayed(() -> finish(), 2000);
-        }, 1000);
+        }, 3000);
     }
 }
