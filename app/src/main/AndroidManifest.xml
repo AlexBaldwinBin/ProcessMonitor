@@ -5,6 +5,7 @@
 
     <queries>
         <package android:name="com.termux" />
+        <package android:name="moe.shizuku.privileged.api" />
     </queries>
 
     <application
@@ -34,6 +35,14 @@
                 android:name="android.service.quicksettings.TOGGLEABLE_TILE"
                 android:value="true"/>
         </service>
+
+        <provider
+            android:name="rikka.shizuku.ShizukuProvider"
+            android:authorities="com.termux.qstile.shizuku"
+            android:multiprocess="false"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL"/>
 
     </application>
 
