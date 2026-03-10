@@ -18,6 +18,20 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v2
+        with:
+          cmdline-tools-version: '9477386'
+          accept-android-sdk-licenses: true
+
+      - name: Cache Android SDK
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.android/sdk
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: android-sdk-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+          restore-keys: |
+            android-sdk-${{ runner.os }}-
 
       - name: Install Gradle
         uses: gradle/gradle-build-action@v2
