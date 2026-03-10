@@ -1,34 +1,22 @@
 package com.termux.qstile;
 
 import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
+import java.io.File;
 
 public class LaunchActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            Intent intent = new Intent();
-            intent.setClassName("com.termux", "com.termux.app.RunCommandService");
-            intent.setAction("com.termux.RUN_COMMAND");
-            intent.putExtra("com.termux.RUN_COMMAND_PATH", "/data/data/com.termux/files/home/scripts/scan_wrapper.sh");
-            intent.putExtra("com.termux.RUN_COMMAND_BACKGROUND", false);
-            intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
-            ComponentName cn;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                cn = startForegroundService(intent);
-            } else {
-                cn = startService(intent);
-            }
-            Toast.makeText(this, cn != null ? "OK!" : "NULL", Toast.LENGTH_LONG).show();
+            File trigger = new File("/data/data/com.termux/files/home/trigger");
+            boolean created = trigger.createNewFile();
+            Toast.makeText(this, created ? "TRIGGER CREATED" : "EXISTS/FAILED", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             Toast.makeText(this, "ERR: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
-        new Handler().postDelayed(() -> finish(), 3000);
+        new Handler().postDelayed(() -> finish(), 2000);
     }
 }
